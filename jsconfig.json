@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "allowAbstract": true,
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  }
+}
