@@ -6,15 +6,28 @@ import {
   FaEnvelope,
   FaMapMarkerAlt,
 } from "react-icons/fa"
+import { Link } from "react-router-dom"
+import blackLogo from "@/assets/logo/djdmax-logo-black-6.png"
+import whiteLogo from "@/assets/logo/djdmax-logo-white-6.png"
 
 const Footer = () => {
   return (
-    <footer className="shadow  pt-14 ">
-      <div className="max-w-[1330px] mx-auto">
+    <footer className="shadow  pt-14 px-4 ">
+      <div className="max-w-[1330px] mx-auto ">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 pb-6">
           <div>
-            <h2 className="text-3xl font-bold mb-6 text-orange-500">DJ DMAX<span
-              className="text-primary">.</span></h2>
+            <Link to="/" aria-label="DJ DMAX home" className="mb-6 inline-block">
+              <img
+                src={blackLogo}
+                alt=""
+                className="h-20 w-auto object-contain dark:hidden"
+              />
+              <img
+                src={whiteLogo}
+                alt=""
+                className="hidden h-20 w-auto object-contain dark:block"
+              />
+            </Link>
 
             <p className="text-gray-600 leading-7 mb-6">
               We are a dynamic team of full stack developers and

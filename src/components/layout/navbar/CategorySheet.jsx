@@ -29,7 +29,7 @@ export default function CategorySheet({ selectedCategory, setShowSheet }) {
 
   return (
     <div className="bg-orange-50 backdrop-blur-xl shadow-2xl lg:h-auto w-full 
-    border border-white/10 sticky top-0 rounded-b-2xl overflow-hidden mt-12">
+    border border-white/10  rounded-b-2xl overflow-hidden mt-11">
       <div className="flex flex-wrap text-sm  ">
 
         {categoryTwo[selectedCategory]?.map((parent, index) => (

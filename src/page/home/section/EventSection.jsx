@@ -47,11 +47,11 @@ const EventSection = () => {
 
   return (
      <section className="py-24 bg-gray-50 dark:bg-gray-950 transition-colors duration-300">
-      <div className="max-w-[1350px] mx-auto">
+      <div className="max-w-[1350px] mx-auto ">
 
 
         {/* Heading + View All */}
-        <div className="flex items-center justify-between mb-8">
+        <div className="flex items-center justify-between mb-8 ">
           <div className="flex items-center gap-4">
             <span className="text-4xl font-bold text-orange-400">|</span>
             <h2 className="font-bold text-3xl uppercase">
@@ -68,7 +68,7 @@ const EventSection = () => {
         </div>
 
         {/* Show Only First 10 Events (or 5 per row) */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 ">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-2">
           {events.slice(0, 4).map((event) => (
             <SimilerEventCard key={event.id} event={event} />
           ))}

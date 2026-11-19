@@ -34,26 +34,6 @@ const HeroSection = () => {
           </div>
         ))}
       </Slider>
-      <div className="absolute inset-0 z-10 flex items-center justify-center bg-black/45 px-6 text-center">
-        <div className="max-w-4xl text-white">
-          <h1 className="text-4xl font-bold leading-tight sm:text-5xl lg:text-6xl">
-            DJ Dmax – Bihar’s Premier DJ &amp; Pro Sound Production
-          </h1>
-          <p className="mx-auto mt-5 max-w-3xl text-lg sm:text-xl">
-            Weddings, Concerts, Club Nights &amp; Mega Events ke liye Zabardast
-            Sound aur Lighting Setup. 12+ Saal ka Anubhav, Har Event Ko Banaye
-            Yaadgar!
-          </p>
-          <a
-            href="https://wa.me/919876543210?text=Hello%20DJ%20Dmax!%20Mujhe%20sound%20setup%20booking%20ke%20baare%20mein%20jaankari%20chahiye."
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-8 inline-block rounded-full bg-amber-500 px-8 py-3 font-semibold text-black transition-colors hover:bg-amber-400"
-          >
-            Book Your Date Now
-          </a>
-        </div>
-      </div>
     </div>
   );
 };

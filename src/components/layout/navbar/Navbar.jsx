@@ -2,12 +2,21 @@ import { useState } from "react";
 import { CiUser } from "react-icons/ci";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { motion, useReducedMotion } from "framer-motion";
-import { FaShoppingCart } from "react-icons/fa";
+import { motion } from "framer-motion";
+import {
+  FaFacebookF,
+  FaLinkedinIn,
+  FaShoppingCart,
+  FaTwitter,
+  FaVimeoV,
+} from "react-icons/fa";
+import { Menu } from "lucide-react";
 import { useAuth } from "@/context/AuthContext";
 import { useCart } from "@/context/CartContext";
 import { mainCategory } from "@/data/category/mainCategory";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import blackLogo from "@/assets/logo/djdmax-logo-black-6.png";
+import whiteLogo from "@/assets/logo/djdmax-logo-white-6.png";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -24,6 +33,14 @@ import {
 } from "@/components/ui/navigation-menu";
 import ThemeToggle from "@/components/them/ThemeToggle";
 import CategorySheet from "./CategorySheet";
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 
 const MotionLink = motion(Link);
 
@@ -31,8 +48,6 @@ export default function Navbar() {
   const { isAuthenticated, user, logoutUser } = useAuth();
   const { cartItems } = useCart();
   const navigate = useNavigate();
-  const shouldReduceMotion = useReducedMotion();
-
   const [showCategorySheet, setShowCategorySheet] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState(null);
 
@@ -56,13 +71,19 @@ export default function Navbar() {
 
   return (
     <>
-      <header className="sticky top-0 z-50 bg-background/80 backdrop-blur-md shadow-sm ">
-        <nav className="flex justify-between items-center px-6 lg:px-24 h-20 ">
-          <Link
-            to="/"
-            className="text-4xl font-bold text-[#FF7E29] tracking-wide"
-          >
-            DJ DMAX
+      <header className="sticky top-0 z-50 bg-background/80 backdrop-blur-md shadow-sm px-4  ">
+        <nav className="flex justify-between items-center lg:px-24 h-18 ">
+          <Link to="/" aria-label="DJ DMAX home" className="shrink-0">
+            <img
+              src={blackLogo}
+              alt=""
+              className="h-20 w-auto object-contain dark:hidden"
+            />
+            <img
+              src={whiteLogo}
+              alt=""
+              className="hidden h-20 w-auto object-contain dark:block"
+            />
           </Link>
 
           <div className="hidden lg:flex ">
@@ -142,11 +163,13 @@ export default function Navbar() {
           </div>
 
           <div className="flex items-center gap-4 text-lg">
-            <ThemeToggle />
+            <div className="hidden sm:block">
+              <ThemeToggle />
+            </div>
 
             <Link
               to="/cart"
-              className="relative p-3 rounded-full hover:bg-gray-100 transition"
+              className="relative p-2 rounded-full hover:bg-gray-100 transition"
             >
               <FaShoppingCart size={24} />
               {cartItems.length > 0 && (
@@ -169,7 +192,7 @@ export default function Navbar() {
                     </AvatarFallback>
                   </Avatar>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent align="end" className="w-56 mt-2">
+                <DropdownMenuContent align="end" className="w-56 mt-3.5 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-lg rounded-lg p-2">
                   <DropdownMenuLabel className="font-normal">
                     <div className="flex flex-col space-y-1">
                       <p className="text-sm font-medium leading-none">
@@ -201,17 +224,86 @@ export default function Navbar() {
             ) : (
               <MotionLink
                 to="/login"
-                whileHover={shouldReduceMotion ? undefined : {
-    
-                  boxShadow: "0 10px 24px rgba(255, 90, 31, 0.3)",
-                }}
+                aria-label="Login"
+                
                
-                className="group flex items-center gap-2 px-8 py-2 rounded-full text-black font-semibold text-lg transition-colors duration-300 ease-in-out bg-gradient-to-r from-[#ff9a3c] to-[#ff5a1f] hover:bg-none hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2"
+                className="group flex items-center gap-2 px-2 md:px-8 py-2 rounded-full text-black font-semibold text-lg transition-colors duration-300 ease-in-out bg-gradient-to-r from-[#ff9a3c] to-[#ff5a1f] hover:bg-none hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2"
               >
                 <CiUser size={22} className="transition-transform duration-300  motion-reduce:transition-none motion-reduce:transform-none" />
-                Login
+                <span className="hidden sm:inline">Login</span>
               </MotionLink>
             )}
+
+            <Sheet>
+              <SheetTrigger asChild>
+                <button
+                  type="button"
+                  aria-label="Open navigation menu"
+                  className="rounded-md cursor-pointer lg:hidden"
+                >
+                  <Menu size={28} />
+                </button>
+              </SheetTrigger>
+              <SheetContent side="left" className="w-[85%] max-w-xs bg-white">
+                <SheetHeader>
+                  <SheetTitle>
+                    <img
+                      src={blackLogo}
+                      alt="DJ DMAX"
+                      className="h-20 w-auto object-contain dark:hidden"
+                    />
+                    <img
+                      src={whiteLogo}
+                      alt="DJ DMAX"
+                      className="hidden h-20 w-auto object-contain dark:block"
+                    />
+                  </SheetTitle>
+                </SheetHeader>
+                <nav className="flex flex-col gap-1 px-4">
+                  {[
+                    { name: "Home", to: "/" },
+                    { name: "Events", to: "/events" },
+                    { name: "About", to: "/about" },
+                    { name: "Gallery", to: "/gallary" },
+                    { name: "Blog", to: "/blog" },
+                  ].map((item) => (
+                    <SheetClose asChild key={item.to}>
+                      <Link
+                        to={item.to}
+                        className="rounded-md px-3 py-3 font-semibold transition hover:bg-orange-50 hover:text-orange-500 dark:hover:bg-gray-800"
+                      >
+                        {item.name}
+                      </Link>
+                    </SheetClose>
+                  ))}
+                </nav>
+                <div className="mt-auto border-t px-4 pt-5">
+                  <SheetClose asChild>
+                    <Link
+                      to="/contact"
+                      className="block w-full bg-gradient-to-r from-[#ff9a3c] to-[#ff5a1f] px-4 py-3 text-center font-semibold text-black transition-colors duration-300 hover:bg-none hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2"
+                    >
+                      Contact Us
+                    </Link>
+                  </SheetClose>
+                  <div
+                    aria-hidden="true"
+                    className="flex justify-center gap-3 py-5 text-muted-foreground"
+                  >
+                    {[FaFacebookF, FaTwitter, FaLinkedinIn, FaVimeoV].map(
+                      (Icon, index) => (
+                        <span
+                          key={index}
+                          className="flex h-10 w-10 items-center justify-center rounded-full border transition-colors hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black"
+                        >
+                          <Icon size={16} />
+                        </span>
+                      ),
+                    )}
+                  </div>
+                </div>
+              </SheetContent>
+            </Sheet>
           </div>
         </nav>
       </header>
