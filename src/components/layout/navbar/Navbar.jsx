@@ -72,7 +72,7 @@ export default function Navbar() {
   return (
     <>
       <header className="sticky top-0 z-50 bg-background/80 backdrop-blur-md shadow-sm px-4  ">
-        <nav className="flex justify-between items-center lg:px-24 h-18 ">
+        <nav className="flex justify-between items-center max-w-[1330px] mx-auto h-20 ">
           <Link to="/" aria-label="DJ DMAX home" className="shrink-0">
             <img
               src={blackLogo}
@@ -143,6 +143,18 @@ export default function Navbar() {
                     font-semibold"
                     >
                       Blog
+                    </Link>
+                  </NavigationMenuLink>
+                </NavigationMenuItem>
+
+                <NavigationMenuItem>
+                  <NavigationMenuLink asChild>
+                    <Link
+                      to="/portfolio"
+                      className="hover:text-orange-500 transition
+                    font-semibold"
+                    >
+                      Portfolio
                     </Link>
                   </NavigationMenuLink>
                 </NavigationMenuItem>
@@ -265,6 +277,7 @@ export default function Navbar() {
                     { name: "Events", to: "/events" },
                     { name: "About", to: "/about" },
                     { name: "Gallery", to: "/gallary" },
+                    { name: "Portfolio", to: "/portfolio" },
                     { name: "Blog", to: "/blog" },
                   ].map((item) => (
                     <SheetClose asChild key={item.to}>

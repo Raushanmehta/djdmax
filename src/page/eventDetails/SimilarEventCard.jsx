@@ -25,11 +25,11 @@ const SimilerEventCard = ({ event }) => {
 
   return (
     <div
-      className="group px-2 relative w-full cursor-pointer "
+      className="group relative w-full cursor-pointer "
       onClick={handleClick}
     >
       <div className="relative w-full rounded-xl overflow-hidden bg-white shadow-sm hover:shadow-md transition-shadow ">
-        <div className="w-full h-76 overflow-hidden">
+        <div className="w-full h-90 lg:h-76 overflow-hidden">
           <img
             src={image}
             alt={title}
@@ -38,18 +38,18 @@ const SimilerEventCard = ({ event }) => {
         </div>
       </div>
 
-      <div className="details group-hover-effect pt-3 space-y-1 rounded-md w-full border border-gray-200">
+      <div className="details group-hover-effect font-roboto pt-3 space-y-1 rounded-md w-full border border-gray-500">
         <div className="name">
-          <h1 className="font-semibold text-sm truncate">{title}</h1>
-          <p className="text-gray-500 text-xs">{categoryName}</p>
+          <h1 className="font-semibold text-base truncate">{title}</h1>
+          <p className="text-gray-500 text-sm">{categoryName}</p>
         </div>
 
         <div className="price flex items-center gap-3 text-sm">
-          <span className="text-black font-bold">₹ {bookingPrice.toLocaleString()}</span>
+          <span className="text-black dark:text-white font-bold">₹ {bookingPrice.toLocaleString()}</span>
           {discount > 0 && (
             <>
-              <span className="line-through text-gray-400 text-xs">₹ {mrpPrice.toLocaleString()}</span>
-              <span className="text-orange-600 font-semibold text-xs">{discount}% Off</span>
+              <span className="line-through text-gray-400 text-sm">₹ {mrpPrice.toLocaleString()}</span>
+              <span className="text-orange-600 font-semibold text-sm">{discount}% Off</span>
             </>
           )}
         </div>

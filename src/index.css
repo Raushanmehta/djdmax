@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Anton&family=Roboto:wght@400;500;700&display=swap");
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
@@ -133,6 +134,17 @@
 .stroke-text {
   -webkit-text-stroke: 1px #FF6900;
   color: transparent;
+}
+
+.testimonial-display {
+  font-family: "Anton", Impact, "Arial Black", sans-serif;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.015em;
+}
+
+.font-roboto {
+  font-family: "Roboto", Arial, sans-serif;
 }
 
 

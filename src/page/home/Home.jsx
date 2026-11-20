@@ -8,18 +8,22 @@ import ProcessSection from './section/ProcessSection'
 import TrustedSection from './section/TrustedSection'
 import GallarySection from './section/GallarySection'
 import FaqSection from './section/FqaSection'
+import StatsSection from './section/StatsSection'
+import CtaSection from './section/CtaSection'
 
 const Home = () => {
   return (
     <div>
       <HeroSection />
       <UpcomingEventSection />
+      <StatsSection/>
       <AboutSection />
       <EventSection />
       <ProcessSection />
       <GallarySection />
-      <TrustedSection />
+      <CtaSection />
       <TestimonialsSection />
+      <TrustedSection />
       <FaqSection />
     </div>
   )

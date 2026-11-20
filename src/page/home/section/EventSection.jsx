@@ -37,7 +37,7 @@ const EventSection = () => {
 
   if (loading) {
     return (
-      <div className="flex justify-center py-20">
+      <div className="flex justify-center py-10 md:py-16 lg:py-20 px-4">
         <Loader2 className="animate-spin text-orange-500" size={32} />
       </div>
     );
@@ -46,15 +46,17 @@ const EventSection = () => {
   if (events.length === 0) return null;
 
   return (
-     <section className="py-24 bg-gray-50 dark:bg-gray-950 transition-colors duration-300">
-      <div className="max-w-[1350px] mx-auto ">
+     <section className="py-10 md:py-16 lg:py-20 px-4 bg-gray-50 dark:bg-gray-950 transition-colors duration-300">
+      <div className="max-w-[1330px] mx-auto ">
 
 
         {/* Heading + View All */}
-        <div className="flex items-center justify-between mb-8 ">
+        <div className="flex items-center justify-between mb-10 ">
           <div className="flex items-center gap-4">
-            <span className="text-4xl font-bold text-orange-400">|</span>
-            <h2 className="font-bold text-3xl uppercase">
+            <span className="-translate-y-1  lg:-translate-y-2  text-3xl lg:text-6xl font-bold leading-[0.92] text-orange-400">
+              |
+            </span>
+            <h2 className="testimonial-display text-[clamp(2rem,4vw,5.75rem)] leading-[0.92]">
               All Events
             </h2>
           </div>
@@ -68,7 +70,7 @@ const EventSection = () => {
         </div>
 
         {/* Show Only First 10 Events (or 5 per row) */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-2">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 ">
           {events.slice(0, 4).map((event) => (
             <SimilerEventCard key={event.id} event={event} />
           ))}

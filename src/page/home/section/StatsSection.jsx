@@ -1,27 +1,30 @@
 import React, { useEffect, useRef, useState } from "react";
 import { FaUsers, FaShieldAlt, FaCheckCircle } from "react-icons/fa";
+import { GrDeliver } from "react-icons/gr";
+import { IoStar } from "react-icons/io5";
+import { MdVerified } from "react-icons/md";
 
 const defaultStats = [
     {
-        icon: <FaUsers className="h-6 w-6 text-blue-500" />,
-        number: "2000+",
-        label: "Happy Customers",
-    },
-    {
-        icon: <FaShieldAlt className="h-6 w-6 text-blue-500" />,
+        icon: <FaUsers className="h-6 md:h-10 w-6 md:w-10 text-orange-500" />,
+        number: "5000+",
+        label: "Happy Clients",
+    }, {
+        icon: <GrDeliver  className="h-6 md:h-10 w-6 md:w-10 text-orange-500" />,
         number: "1500+",
-        label: "Hair Assessments Completed",
+        label: "Events Executed",
     },
     {
-        icon: <FaCheckCircle className="h-6 w-6 text-blue-500" />,
-        number: "5000+",
-        label: "Successful Treatment Plans",
+        icon: <MdVerified className="h-6 md:h-10 w-6 md:w-10 text-orange-500" />,
+        number: "12+",
+        label: "Years Experienc",
     },
     {
-        icon: <FaCheckCircle className="h-6 w-6 text-blue-500" />,
-        number: "5000+",
-        label: "Successful Treatment Plans",
+        icon: <IoStar className="h-6 md:h-10 w-6 md:w-10 text-orange-500" />,
+        number: "4.8",
+        label: "Google Ratings",
     },
+    
 ];
 
 function Counter({ number }) {
@@ -30,8 +33,11 @@ function Counter({ number }) {
     const counterRef = useRef(null);
 
     // Extract number and suffix
-    const numericValue = parseInt(number.replace(/\D/g, ""), 10);
-    const suffix = number.replace(/[0-9]/g, "");
+    const numericMatch = number.match(/^\d+(?:\.\d+)?/);
+    const numericText = numericMatch?.[0] ?? "0";
+    const numericValue = Number(numericText);
+    const decimalPlaces = numericText.split(".")[1]?.length ?? 0;
+    const suffix = number.slice(numericText.length);
 
     // Start counter when visible
     useEffect(() => {
@@ -69,16 +75,20 @@ function Counter({ number }) {
                 setCount(numericValue);
                 clearInterval(timer);
             } else {
-                setCount(Math.floor(start));
+                setCount(
+                    decimalPlaces > 0
+                        ? Number(start.toFixed(decimalPlaces))
+                        : Math.floor(start)
+                );
             }
         }, stepTime);
 
         return () => clearInterval(timer);
-    }, [started, numericValue]);
+    }, [started, numericValue, decimalPlaces]);
 
     return (
         <span ref={counterRef}>
-            {count}
+            {count.toFixed(decimalPlaces)}
             {suffix}
         </span>
     );
@@ -86,32 +96,34 @@ function Counter({ number }) {
 
 export default function StatsSection({ stats = defaultStats }) {
     return (
-        <section className="relative overflow-hidden border-y border-gray-100 bg-white px-6 py-6 sm:px-10 lg:px-16">
+        <section className="relative overflow-hidden border-y border-gray-100 bg-gray-50 px-4 transition-colors dark:border-gray-800 dark:bg-gray-950">
             <div className="mx-auto max-w-[1330px]">
-                <div className="grid grid-cols-1 items-center gap-8 text-center md:grid-cols-4">
+                <div className="grid grid-cols-4 items-center gap-3 md:grid-cols-4">
                     {stats.map((stat, index) => (
                         <div
                             key={index}
-                            className={`relative flex flex-col items-center justify-center space-y-2 py-4 ${
+                            className={`relative flex flex-col items-center justify-center gap-2 py-4 text-center md:flex-row md:gap-3 md:text-left ${
                                 index !== stats.length - 1
-                                    ? "md:border-r md:border-gray-200"
+                                    ? "md:border-r md:border-gray-200 dark:border-gray-800"
                                     : ""
                             }`}
                         >
                             {/* Icon */}
-                            <div className="mb-1 flex items-center justify-center">
+                            <div className="flex shrink-0 items-center justify-center">
                                 {stat.icon}
                             </div>
 
-                            {/* Animated Number */}
-                            <h3 className="font-sans text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
-                                <Counter number={stat.number} />
-                            </h3>
+                            <div className="min-w-0 text-center md:text-left">
+                                {/* Animated Number */}
+                                <h3 className="font-sans text-xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl md:text-3xl lg:text-4xl">
+                                    <Counter number={stat.number} />
+                                </h3>
 
-                            {/* Label */}
-                            <p className="text-xs font-medium text-gray-500 sm:text-sm">
-                                {stat.label}
-                            </p>
+                                {/* Label */}
+                                <p className="text-xs font-medium text-gray-500 dark:text-gray-400 sm:text-sm">
+                                    {stat.label}
+                                </p>
+                            </div>
                         </div>
                     ))}
                 </div>

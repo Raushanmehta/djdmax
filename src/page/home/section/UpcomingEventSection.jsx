@@ -1,7 +1,7 @@
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import UpcomingEventCard from "../components/UpcomingEventCard";
+import UpcomingEventCard from "../components/cards/UpcomingEventCard";
 import { bookingAPI } from "@/lib/api";
 import { useEffect, useState } from "react";
 import { Loader2 } from "lucide-react";

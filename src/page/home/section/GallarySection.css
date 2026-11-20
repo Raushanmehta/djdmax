@@ -1,0 +1,7 @@
+.gallery-carousel .slick-list {
+  margin-inline: -0.5rem;
+}
+
+.gallery-carousel .slick-slide > div {
+  margin-inline: 0.5rem;
+}

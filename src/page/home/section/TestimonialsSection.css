@@ -1,0 +1,11 @@
+.testimonial-carousel .slick-list {
+  margin-inline: -0.5rem;
+}
+
+.testimonial-carousel .slick-slide > div {
+  margin-inline: 0.5rem;
+}
+
+.testimonial-carousel .slick-dots {
+  bottom: -2.5rem;
+}

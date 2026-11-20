@@ -1,8 +1,9 @@
 import Slider from "react-slick";
-import { Star } from "lucide-react";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import "./TestimonialsSection.css";
+import TestimonialCard from "../components/cards/TestimonialCard";
 
 const testimonials = [
   {
@@ -95,13 +96,13 @@ const TestimonialsSection = () => {
 
     responsive: [
       {
-        breakpoint: 1024,
+        breakpoint: 1023,
         settings: {
           slidesToShow: 2,
         },
       },
       {
-        breakpoint: 640,
+        breakpoint: 767,
         settings: {
           slidesToShow: 1,
         },
@@ -110,69 +111,22 @@ const TestimonialsSection = () => {
   };
 
   return (
-    <section className="py-24 bg-gray-50 dark:bg-gray-950 transition-colors duration-300">
-      <div className="max-w-[1350px] mx-auto">
+    <section className="py-10 md:py-16 lg:py-20 px-4  bg-gray-50 dark:bg-gray-950 transition-colors duration-300">
+      <div className=" max-w-[1330px] mx-auto">
+        
         {/* Heading */}
-
-        <div className="text-center mb-14">
-          <div className="flex items-center justify-center gap-6 mb-14">
-            <div className="w-32 md:w-48 h-[2px] bg-orange-500"></div>
-
-            <h1 className="text-2xl uppercase md:text-3xl font-bold text-gray-900 dark:text-white">
-              Testimonial
-            </h1>
-
-            <div className="w-32 md:w-48 h-[2px] bg-orange-500"></div>
-          </div>
-
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white">
-            Loved by <span className="text-orange-500">10,000+ Teams</span>
+        <div className="text-center mb-10">
+          <h2 className="testimonial-display text-gray-900 dark:text-white text-[clamp(2rem,4vw,5.75rem)] leading-[0.92]">
+            <span className="block">Testmonial</span>
+            <span className="mx-auto mt-2.5 block w-fit -rotate-2 origin-left bg-orange-500 px-5 py-2 text-[clamp(1.35rem,3.5vw,2rem)] leading-none text-white shadow-[7px_7px_0_rgba(249,115,22,0.2)] dark:shadow-[7px_7px_0_rgba(249,115,22,0.35)]">
+              Our Clients
+              </span>
           </h2>
         </div>
 
-        <Slider {...settings}>
+        <Slider {...settings} className="testimonial-carousel">
           {testimonials.map((item) => (
-            <div key={item.id} className="px-3">
-              <div className="rounded-3xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 p-8 h-auto flex flex-col justify-between transition-all duration-300 hover:-translate-y-2 hover:border-orange-500 hover:shadow-xl">
-                {/* Stars */}
-
-                <div className="flex gap-1 mb-5">
-                  {[...Array(5)].map((_, index) => (
-                    <Star
-                      key={index}
-                      size={18}
-                      className="fill-orange-500 text-orange-500"
-                    />
-                  ))}
-                </div>
-
-                {/* Review */}
-
-                <p className="text-gray-600 dark:text-gray-300 italic leading-7">
-                  "{item.review}"
-                </p>
-
-                {/* User */}
-
-                <div className="flex items-center gap-4 mt-8">
-                  <img
-                    src={item.image}
-                    alt={item.name}
-                    className="w-14 h-14 rounded-full border-2 border-orange-500"
-                  />
-
-                  <div>
-                    <h4 className="font-semibold text-lg text-gray-900 dark:text-white">
-                      {item.name}
-                    </h4>
-
-                    <p className="text-gray-500 dark:text-gray-400 text-sm">
-                      {item.role}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <TestimonialCard key={item.id} testimonial={item} />
           ))}
         </Slider>
       </div>
