@@ -10,6 +10,7 @@ import GallarySection from './section/GallarySection'
 import FaqSection from './section/FqaSection'
 import StatsSection from './section/StatsSection'
 import CtaSection from './section/CtaSection'
+import Dis from './section/Dis'
 
 const Home = () => {
   return (
@@ -21,7 +22,8 @@ const Home = () => {
       <EventSection />
       <ProcessSection />
       <GallarySection />
-      <CtaSection />
+      <Dis/>
+      {/* <CtaSection /> */}
       <TestimonialsSection />
       <TrustedSection />
       <FaqSection />

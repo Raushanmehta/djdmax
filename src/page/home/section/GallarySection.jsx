@@ -1,39 +1,26 @@
 "use client";
 
 import React from "react";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import "./GallarySection.css";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+} from "@/components/ui/carousel";
 import Gallerycard from "../components/cards/Gallerycard";
 
 export default function GallerySection() {
-  // Slick Slider Settings with Auto-Scroll (Autoplay)
-  const settings = {
-    dots: false,
-    infinite: true,
-    speed: 800,
-    slidesToShow: 4,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 3500,
-    pauseOnHover: true,
-    responsive: [
-      {
-        breakpoint: 1023,
-        settings: {
-          slidesToShow: 3,
-        },
-      },
-      {
-        breakpoint: 767,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-    ],
-  };
+  const [carouselApi, setCarouselApi] = React.useState(null);
+  const [isPaused, setIsPaused] = React.useState(false);
+
+  React.useEffect(() => {
+    if (!carouselApi || isPaused) return;
+
+    const interval = window.setInterval(() => {
+      carouselApi.scrollNext();
+    }, 3500);
+
+    return () => window.clearInterval(interval);
+  }, [carouselApi, isPaused]);
 
   // Portfolio items with different sizes / layout styles
   const portfolioSlides = [
@@ -88,7 +75,7 @@ export default function GallerySection() {
     <section className="py-10 md:py-16 lg:py-20 px-4 bg-gray-50 dark:bg-gray-950 transition-colors duration-300">
       <div className="max-w-[1330px] mx-auto ">
         {/* Heading */}
-        <div className="text-center mb-10">
+        <div className="text-center mb-7 md:mb-10">
           <h2 className="testimonial-display text-gray-900 dark:text-white text-[clamp(2rem,4vw,5.75rem)] leading-[0.92]">
             <span className="block">Our Gallery</span>
             <span className="mx-auto mt-2.5 block w-fit -rotate-2 origin-left bg-orange-500 px-5 py-2 text-[clamp(1.35rem,3.5vw,2rem)] leading-none text-white shadow-[7px_7px_0_rgba(249,115,22,0.2)] dark:shadow-[7px_7px_0_rgba(249,115,22,0.35)]">
@@ -97,14 +84,24 @@ export default function GallerySection() {
           </h2>
         </div>
 
-        {/* Slick Slider Container */}
-        <div className=" overflow-hidden">
-          <Slider {...settings} className="gallery-carousel">
+        <Carousel
+          aria-label="DJ DMAX gallery"
+          opts={{ align: "start", loop: true }}
+          setApi={setCarouselApi}
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+        >
+          <CarouselContent>
             {portfolioSlides.map((slide) => (
-              <Gallerycard key={slide.id} slide={slide} />
+              <CarouselItem
+                key={slide.id}
+                className="basis-full md:basis-1/3 lg:basis-1/4"
+              >
+                <Gallerycard slide={slide} />
+              </CarouselItem>
             ))}
-          </Slider>
-        </div>
+          </CarouselContent>
+        </Carousel>
       </div>
     </section>
   );

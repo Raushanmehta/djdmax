@@ -24,7 +24,7 @@ import AddEvent from "@/admin/page/event/AddEvent";
 import Email from "@/admin/page/email/Email";
 import AboutPage from "@/page/about/AboutPage";
 import ContactPage from "@/page/contact/ContactPage";
-import GallaryPage from "@/page/gallary/GallaryPage";
+import GalleryPage from "@/page/gallery/GalleryPage";
 import BlogPage from "@/page/blog/BlogPage";
 
 
@@ -35,7 +35,7 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <Home /> },
       { path: "about", element: <AboutPage /> },
-      { path: "gallary", element: <GallaryPage /> },
+      { path: "gallery", element: <GalleryPage /> },
       { path: "contact", element: <ContactPage /> },
       { path: "blog", element: <BlogPage/>},
       { path: "events", element: <Event /> },

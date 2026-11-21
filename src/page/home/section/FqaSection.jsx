@@ -33,7 +33,7 @@ export default function FaqSection() {
       <div className="mx-auto max-w-[1330px] ">
        
          {/* Heading */}
-        <div className="text-center mb-10">
+        <div className="text-center mb-7 md:mb-10">
           <h2 className="testimonial-display text-gray-900 dark:text-white text-[clamp(2rem,4vw,5.75rem)] leading-[0.92]">
             <span className="block"> Frequently</span>
             <span className="mx-auto mt-2.5 block w-fit -rotate-2 origin-left bg-orange-500 px-5 py-2 text-[clamp(1.35rem,3.5vw,2rem)] leading-none text-white shadow-[7px_7px_0_rgba(249,115,22,0.2)] dark:shadow-[7px_7px_0_rgba(249,115,22,0.35)]">

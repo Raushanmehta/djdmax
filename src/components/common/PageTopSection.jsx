@@ -3,7 +3,7 @@ import React from "react";
 export default function PageTopSection({ title = "About Us" }) {
     return (
         <main>
-            <div className="relative z-0 text-center mb-10 py-16 sm:py-20 shadow-lg bg-orange-500 overflow-hidden text-white">
+            <div className="relative z-0 text-center py-16 sm:py-20 shadow-lg bg-orange-500 overflow-hidden text-white">
                 
                 {/* Background Image - object-bottom se image ka lower/down part focus hoga */}
                 <div className="absolute inset-0 -z-10">
